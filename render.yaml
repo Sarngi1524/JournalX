@@ -8,20 +8,20 @@ services:
     envVars:
       - key: NODE_ENV
         value: production
-      - key: MONGODB_URI
+      - key: MONGO_URI
         fromDatabase:
           name: journalx-db
           property: connectionString
       - key: JWT_SECRET
         generateValue: true
-      - key: CLOUDINARY_NAME
+      - key: CLOUD_NAME
         sync: false
       - key: CLOUDINARY_API_KEY
         sync: false
       - key: CLOUDINARY_API_SECRET
         sync: false
       - key: CORS_ORIGIN
-        value: https://journalx.vercel.app
+        value: https://journalx-three.vercel.app
     routes:
       - path: /api
         matchType: prefix

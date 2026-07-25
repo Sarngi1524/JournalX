@@ -72,7 +72,7 @@ mongodb+srv://username:password@cluster.mongodb.net/journalx?retryWrites=true&w=
 const cors = require('cors');
 
 app.use(cors({
-  origin: process.env.CORS_ORIGIN || 'http://localhost:3000',
+   origin: process.env.CORS_ORIGIN || 'http://localhost:3000',
   credentials: true
 }));
 ```
@@ -109,9 +109,9 @@ app.use(cors({
 2. Click "Environment"
 3. Add all variables from `server/.env.example`:
    - `NODE_ENV`: `production`
-   - `MONGODB_URI`: Your MongoDB Atlas connection string
+   - `MONGO_URI`: Your MongoDB Atlas connection string
    - `JWT_SECRET`: Generate a strong secret key
-   - `CLOUDINARY_NAME`: Your Cloudinary name
+   - `CLOUD_NAME`: Your Cloudinary name
    - `CLOUDINARY_API_KEY`: Your API key
    - `CLOUDINARY_API_SECRET`: Your API secret
    - `CORS_ORIGIN`: (Update after Vercel deployment)
@@ -145,8 +145,7 @@ app.use(cors({
 ### Step 3: Add Environment Variables
 
 1. In Vercel project settings, go to "Environment Variables"
-2. Add:
-   - `VITE_API_BASE_URL`: `https://journalx-api.onrender.com` (your Render backend URL)
+2. Add: - `VITE_API_BASE_URL`: `https://journalx-api.onrender.com` (your Render backend URL)
 
 ### Step 4: Deploy
 
