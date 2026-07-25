@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL + "/api",
+  baseURL: import.meta.env.vite_api_base_url + "/api",
 });
 
 export const loginUser = (data) => {
