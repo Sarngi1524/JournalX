@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: import.meta.env.vite_api_base_url + "/api",
+  baseURL: `${import.meta.env.vite_api_base_url}/api`,
 });
 
 // Get all posts
