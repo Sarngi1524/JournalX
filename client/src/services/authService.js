@@ -9,6 +9,9 @@ console.info("API base URL:", baseURL);
 
 const API = axios.create({ baseURL });
 
+// Export resolved base so UI can show it for troubleshooting
+export const API_BASE = baseURL;
+
 export const loginUser = (data) => {
   return API.post("/auth/login", data);
 };

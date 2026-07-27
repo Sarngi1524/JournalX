@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import toast from "react-hot-toast";
 
 
-import { loginUser } from "../services/authService";
+import { loginUser, API_BASE } from "../services/authService";
 
 function Login() {
   const navigate = useNavigate();
@@ -44,12 +44,13 @@ function Login() {
 
   } catch (err) {
     console.log(err);
-
-    toast.error(
-      err.response?.data?.message || "Login Failed"
-    );
+    const msg = err.response?.data?.message || err.message || "Login Failed";
+    setLastError(msg);
+    toast.error(msg);
   }
 };
+
+  const [lastError, setLastError] = useState("");
 
   return (
     <div className="min-h-screen bg-[#FAF7F2] flex items-center justify-center px-6 py-10">
@@ -189,6 +190,13 @@ function Login() {
             </Link>
 
           </p>
+
+          <div className="mt-4 text-xs text-gray-500">
+            <div>API base: <span className="font-mono">{API_BASE}</span></div>
+            {lastError && (
+              <div className="mt-2 text-red-600">Last error: {lastError}</div>
+            )}
+          </div>
 
         </motion.div>
 

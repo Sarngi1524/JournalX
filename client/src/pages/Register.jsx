@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { registerUser } from "../services/authService";
+import { registerUser, API_BASE } from "../services/authService";
 import toast from "react-hot-toast";
 
 function Register() {
@@ -32,11 +32,14 @@ function Register() {
   console.log(error.response?.data);
   console.log(error);
 
-  toast.error(
-    error.response?.data?.message || error.message
-  );
+  // show inline error and toast
+  const msg = error.response?.data?.message || error.message;
+  setLastError(msg);
+  toast.error(msg);
 }
 };
+
+  const [lastError, setLastError] = useState("");
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#FFF9F6] px-6">
@@ -86,6 +89,14 @@ function Register() {
           </button>
 
         </form>
+
+        {/* Debug info for mobile troubleshooting */}
+        <div className="mt-4 text-xs text-gray-500">
+          <div>API base: <span className="font-mono">{API_BASE}</span></div>
+          {lastError && (
+            <div className="mt-2 text-red-600">Last error: {lastError}</div>
+          )}
+        </div>
 
         <p className="text-center mt-6">
           Already have an account?{" "}
