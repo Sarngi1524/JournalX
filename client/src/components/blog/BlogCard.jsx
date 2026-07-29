@@ -8,6 +8,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { toggleBookmark } from "../../services/postService";
+import { getAssetUrl } from "../../services/api";
 
 function BlogCard({
   id,
@@ -53,11 +54,7 @@ function BlogCard({
     >
       {/* Cover Image */}
       <img
-        src={
-          image
-            ? `http://localhost:5000${image}`
-            : "https://placehold.co/600x400?text=No+Image"
-        }
+        src={image ? getAssetUrl(image) : "https://placehold.co/600x400?text=No+Image"}
         alt={title}
         className="w-full h-56 object-cover"
       />

@@ -4,6 +4,7 @@ import { FaBookmark, FaSearch, FaClock, FaHeart } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { getBookmarkedPosts, toggleBookmark } from "../services/postService";
 import toast from "react-hot-toast";
+import { getAssetUrl } from "../services/api";
 
 function Bookmarks() {
   const [posts, setPosts] = useState([]);
@@ -170,7 +171,7 @@ function Bookmarks() {
               >
 
                 <img
-                  src={`http://localhost:5000${post.coverImage}`}
+                  src={getAssetUrl(post.coverImage)}
                   alt={post.title}
                   className="w-full h-56 object-cover"
                 />

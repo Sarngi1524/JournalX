@@ -7,6 +7,7 @@ import {
 } from "../services/postService";
 import toast from "react-hot-toast";
 import { FaImage } from "react-icons/fa";
+import { getAssetUrl } from "../services/api";
 
 function EditBlog() {
   const { id } = useParams();
@@ -60,7 +61,7 @@ function EditBlog() {
     });
 
     if (blog.coverImage) {
-      setPreview(`http://localhost:5000${blog.coverImage}`);
+      setPreview(getAssetUrl(blog.coverImage));
     }
   } catch (error) {
     console.log(error);

@@ -1,7 +1,9 @@
 import axios from "axios";
 
+import { API_BASE } from "./api";
+
 const API = axios.create({
-  baseURL: `${import.meta.env.vite_api_base_url}/api`,
+  baseURL: API_BASE,
 });
 
 // Get all comments

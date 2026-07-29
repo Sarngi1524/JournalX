@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { getAssetUrl } from "../../services/api";
 
 function FeaturedBlog({ blog }) {
 
@@ -10,11 +11,7 @@ function FeaturedBlog({ blog }) {
       <div className="bg-gradient-to-r from-pink-200 to-green-100 rounded-[40px] overflow-hidden shadow-xl grid lg:grid-cols-2">
 
         <img
-          src={
-            blog.coverImage
-              ? `http://localhost:5000${blog.coverImage}`
-              : "https://placehold.co/800x500?text=JournalX"
-          }
+          src={blog.coverImage ? getAssetUrl(blog.coverImage) : "https://placehold.co/800x500?text=JournalX"}
           alt={blog.title}
           className="h-full w-full object-cover"
         />

@@ -8,6 +8,7 @@ import {
   addComment,
   deleteComment,
 } from "../services/commentService";
+import { getAssetUrl } from "../services/api";
 
 import { FaTrash } from "react-icons/fa";
 function BlogDetails() {
@@ -136,7 +137,7 @@ toast.success("Comment deleted");
     <div className="max-w-4xl mx-auto py-12 px-6">
 
       <img
-        src={`http://localhost:5000${blog.coverImage}`}
+        src={getAssetUrl(blog.coverImage)}
         alt={blog.title}
         className="rounded-xl mb-8 w-full max-h-[500px] object-cover"
       />
