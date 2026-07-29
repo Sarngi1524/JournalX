@@ -53,9 +53,9 @@ function Login() {
   const [lastError, setLastError] = useState("");
 
   return (
-    <div className="min-h-screen bg-[#FAF7F2] flex items-center justify-center px-6 py-10">
+    <div className="min-h-screen bg-[#FAF7F2] flex items-center justify-center px-4 py-6 sm:px-6 sm:py-10">
 
-      <div className="max-w-6xl w-full bg-white rounded-[40px] shadow-2xl overflow-hidden grid lg:grid-cols-2">
+      <div className="max-w-6xl w-full overflow-hidden rounded-[24px] bg-white shadow-xl sm:rounded-[40px] sm:shadow-2xl lg:grid lg:grid-cols-2">
 
         {/* LEFT */}
 
@@ -90,7 +90,7 @@ function Login() {
         <motion.div
           initial={{ opacity: 0, x: 40 }}
           animate={{ opacity: 1, x: 0 }}
-          className="p-10 lg:p-14"
+          className="p-6 sm:p-10 lg:p-14"
         >
 
           <h2 className="text-4xl font-bold">
@@ -116,15 +116,15 @@ function Login() {
 
               <label>Email</label>
 
-              <div className="mt-2 flex items-center border rounded-2xl px-4">
+              <div className="mt-2 flex items-center border rounded-2xl px-3 sm:px-4">
 
-                <FiMail className="text-gray-400"/>
+                <FiMail className="mr-2 text-gray-400"/>
 
                 <input
                   type="email"
                   name="email"
                   placeholder="Enter your email"
-                  className="w-full p-4 outline-none"
+                  className="w-full min-w-0 p-3 outline-none sm:p-4"
                   onChange={handleChange}
                 />
 
@@ -138,9 +138,9 @@ function Login() {
 
               <label>Password</label>
 
-              <div className="mt-2 flex items-center border rounded-2xl px-4">
+              <div className="mt-2 flex items-center border rounded-2xl px-3 sm:px-4">
 
-                <FiLock className="text-gray-400"/>
+                <FiLock className="mr-2 text-gray-400"/>
 
                 <input
                   type={
@@ -150,7 +150,7 @@ function Login() {
                   }
                   name="password"
                   placeholder="Enter password"
-                  className="w-full p-4 outline-none"
+                  className="w-full min-w-0 p-3 outline-none sm:p-4"
                   onChange={handleChange}
                 />
 

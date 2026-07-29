@@ -34,18 +34,15 @@ if (
 };
 
   return (
-    <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-pink-100">
-      <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    <nav className="sticky top-0 z-50 border-b border-pink-100 bg-white/90 backdrop-blur-md">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6 sm:py-4">
         {/* Logo */}
-        <Link
-          to="/"
-          className="text-3xl font-bold text-pink-500"
-        >
+        <Link to="/" className="text-2xl font-bold text-pink-500 sm:text-3xl">
           JournalX
         </Link>
 
         {/* Navigation */}
-        <div className="hidden md:flex gap-10">
+        <div className="hidden gap-8 md:flex">
           <Link to="/">Home</Link>
 
           {user && (
@@ -57,12 +54,16 @@ if (
         </div>
 
         {/* Mobile menu button */}
-        <div className="md:hidden">
+        <div className="flex items-center gap-2 md:hidden">
+          <button type="button" className="rounded-md border border-pink-200 p-2 text-pink-500">
+            <FiSearch size={20} />
+          </button>
+
           <button
             onClick={() => setOpen((s) => !s)}
             aria-expanded={open}
             aria-label="Toggle navigation"
-            className="p-2 rounded-md border"
+            className="rounded-md border border-pink-200 p-2 text-pink-500"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -82,13 +83,13 @@ if (
         </div>
 
         {/* Right Side */}
-        <div className="flex items-center gap-4">
-          <button>
+        <div className="hidden items-center gap-3 sm:gap-4 md:flex">
+          <button type="button" className="text-gray-700">
             <FiSearch size={22} />
           </button>
 
           {user && (
-            <Link to="/bookmarks">
+            <Link to="/bookmarks" className="text-gray-700">
               <FaRegBookmark size={22} />
             </Link>
           )}
@@ -97,27 +98,27 @@ if (
             <>
               <Link
                 to="/login"
-                className="bg-pink-400 px-5 py-2 rounded-full text-white hover:bg-pink-500 transition"
+                className="rounded-full bg-pink-400 px-4 py-2 text-sm font-medium text-white transition hover:bg-pink-500"
               >
                 Login
               </Link>
 
               <Link
                 to="/register"
-                className="border border-pink-400 px-5 py-2 rounded-full text-pink-500 hover:bg-pink-50 transition"
+                className="rounded-full border border-pink-400 px-4 py-2 text-sm font-medium text-pink-500 transition hover:bg-pink-50"
               >
                 Register
               </Link>
             </>
           ) : (
             <>
-              <span className="font-semibold text-pink-500">
+              <span className="hidden text-sm font-semibold text-pink-500 lg:inline">
                 Hi, {user.name}
               </span>
 
               <button
                 onClick={handleLogout}
-                className="bg-red-500 px-4 py-2 rounded-full text-white hover:bg-red-600 transition"
+                className="rounded-full bg-red-500 px-4 py-2 text-sm font-medium text-white transition hover:bg-red-600"
               >
                 Logout
               </button>
@@ -125,31 +126,48 @@ if (
           )}
         </div>
       </div>
-      </div>
 
       {/* Mobile dropdown */}
       {open && (
-        <div className="md:hidden bg-white border-t border-pink-100">
-          <div className="px-4 py-3 space-y-2">
-            <Link to="/" onClick={() => setOpen(false)} className="block">Home</Link>
+        <div className="border-t border-pink-100 bg-white md:hidden">
+          <div className="space-y-2 px-4 py-3">
+            <Link to="/" onClick={() => setOpen(false)} className="block py-1">
+              Home
+            </Link>
 
             {user && (
               <>
-                <Link to="/create-blog" onClick={() => setOpen(false)} className="block">Write</Link>
-                <Link to="/dashboard" onClick={() => setOpen(false)} className="block">Dashboard</Link>
+                <Link to="/create-blog" onClick={() => setOpen(false)} className="block py-1">
+                  Write
+                </Link>
+                <Link to="/dashboard" onClick={() => setOpen(false)} className="block py-1">
+                  Dashboard
+                </Link>
               </>
             )}
 
-            <div className="pt-2 border-t">
+            <div className="border-t border-pink-100 pt-2">
               {!user ? (
                 <div className="space-y-2">
-                  <Link to="/login" onClick={() => setOpen(false)} className="block">Login</Link>
-                  <Link to="/register" onClick={() => setOpen(false)} className="block">Register</Link>
+                  <Link to="/login" onClick={() => setOpen(false)} className="block py-1">
+                    Login
+                  </Link>
+                  <Link to="/register" onClick={() => setOpen(false)} className="block py-1">
+                    Register
+                  </Link>
                 </div>
               ) : (
                 <div className="space-y-2">
-                  <span className="block">Hi, {user.name}</span>
-                  <button onClick={() => { handleLogout(); setOpen(false); }} className="block text-left">Logout</button>
+                  <span className="block py-1">Hi, {user.name}</span>
+                  <button
+                    onClick={() => {
+                      handleLogout();
+                      setOpen(false);
+                    }}
+                    className="block py-1 text-left"
+                  >
+                    Logout
+                  </button>
                 </div>
               )}
             </div>

@@ -42,10 +42,10 @@ function Register() {
   const [lastError, setLastError] = useState("");
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#FFF9F6] px-6">
-      <div className="bg-white shadow-xl rounded-3xl p-8 w-full max-w-md">
+    <div className="min-h-screen flex items-center justify-center bg-[#FFF9F6] px-4 py-6 sm:px-6 sm:py-10">
+      <div className="w-full max-w-md rounded-[24px] bg-white p-6 shadow-xl sm:rounded-[32px] sm:p-8">
 
-        <h1 className="text-3xl font-bold text-center text-pink-500 mb-8">
+        <h1 className="mb-8 text-center text-2xl font-bold text-pink-500 sm:text-3xl">
           Create Account
         </h1>
 
@@ -57,7 +57,7 @@ function Register() {
             placeholder="Full Name"
             value={form.name}
             onChange={handleChange}
-            className="w-full border rounded-xl px-4 py-3 outline-none"
+            className="w-full min-w-0 rounded-xl border px-4 py-3 outline-none"
             required
           />
 
@@ -67,7 +67,7 @@ function Register() {
             placeholder="Email"
             value={form.email}
             onChange={handleChange}
-            className="w-full border rounded-xl px-4 py-3 outline-none"
+            className="w-full min-w-0 rounded-xl border px-4 py-3 outline-none"
             required
           />
 
@@ -77,7 +77,7 @@ function Register() {
             placeholder="Password"
             value={form.password}
             onChange={handleChange}
-            className="w-full border rounded-xl px-4 py-3 outline-none"
+            className="w-full min-w-0 rounded-xl border px-4 py-3 outline-none"
             required
           />
 
