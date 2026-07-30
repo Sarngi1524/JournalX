@@ -1,147 +1,147 @@
-# 📖 JournalX
+# JournalX
 
-A modern full-stack blogging platform built with the MERN stack where users can write, edit, discover, and interact with blogs through likes, comments, and bookmarks.
+A modern MERN blogging platform (React + Vite frontend, Express + MongoDB backend) with authentication, image uploads, comments, bookmarks, and a responsive UI.
 
----
+## Table of contents
 
-## ✨ Features
+- [Features](#features)
+- [Tech stack](#tech-stack)
+- [Quick start (local development)](#quick-start-local-development)
+- [Environment variables](#environment-variables)
+- [Running in production (build)](#running-in-production-build)
+- [Deploying (Vercel + Render)](#deploying-vercel--render)
+- [Troubleshooting](#troubleshooting)
+- [Contributing](#contributing)
+- [License](#license)
 
-- 🔐 JWT Authentication
-- ✍️ Create, Edit & Delete Blogs
-- 🖼️ Image Uploads
-- ❤️ Like Posts
-- 🔖 Bookmark Posts
-- 💬 Comment System
-- 🔍 Search Blogs
-- 📂 Categories
-- 📊 Dashboard
-- 📱 Responsive UI
-- ⚡ Smooth Animations with Framer Motion
+## Features
 
----
+- JWT authentication (register / login)
+- Create, edit and delete blog posts
+- Image uploads (Cloudinary or local uploads)
+- Comments, likes, bookmarks
+- Categories, search, and basic dashboard
+- Responsive UI with Tailwind CSS
 
-## 🛠 Tech Stack
+## Tech stack
 
-### Frontend
-- React (Vite)
-- Tailwind CSS
-- React Router
-- Axios
-- Framer Motion
-- React Hot Toast
-- React Icons
+- Frontend: React (Vite), Tailwind CSS, React Router, Axios
+- Backend: Node.js, Express.js, MongoDB (Mongoose)
+- Auth: JWT
+- Deployment examples: Vercel (frontend) + Render (backend)
 
-### Backend
-- Node.js
-- Express.js
-- MongoDB
-- Mongoose
-- JWT Authentication
-- Multer
+## Quick start (local development)
 
----
-
-## 📸 Screenshots
-
-> Add screenshots here after deployment.
-
----
-
-## 📂 Folder Structure
-
-```
-JournalX
-│
-├── client
-│   ├── components
-│   ├── pages
-│   ├── services
-│   ├── assets
-│   └── App.jsx
-│
-├── server
-│   ├── controllers
-│   ├── middleware
-│   ├── models
-│   ├── routes
-│   └── server.js
-```
-
----
-
-## ⚙️ Installation
+1. Clone the repo
 
 ```bash
-git clone https://github.com/yourusername/JournalX.git
+git clone <repo-url> JournalX
+cd "JournalX"
+```
 
-cd JournalX
+2. Install dependencies
 
+```bash
+# Server
+cd server
 npm install
 
-cd client
-npm install
-
-cd ../server
+# In a separate terminal: Client
+cd ../client
 npm install
 ```
 
----
+3. Create environment files
 
-## 🔑 Environment Variables
+- Create `server/.env` (see **Environment variables** below)
+- Create `client/.env` (or `.env.local`) and set `VITE_API_BASE_URL` during production deploys. Leave blank for local dev (client proxies to local server)
 
-Backend
+4. Run servers
+
+```bash
+# Start backend (server)
+cd server
+npm run dev    # nodemon (development)
+
+# Start frontend (client)
+cd ../client
+npm run dev    # Vite dev server
+```
+
+Open http://localhost:5173 in your browser (Vite will print the local & network URLs). The backend runs on port 5000 by default.
+
+## Environment variables
+
+Server (`server/.env`):
 
 ```
 PORT=5000
-MONGO_URI=YOUR_MONGODB_URI
-JWT_SECRET=YOUR_SECRET
+MONGO_URI=your_mongo_connection_string
+JWT_SECRET=some_long_random_secret
+FRONTEND_URL=https://your-frontend.example.com   # production only; comma-separated allowed
+CLOUDINARY_CLOUD_NAME=...
+CLOUDINARY_API_KEY=...
+CLOUDINARY_API_SECRET=...
 ```
 
-Frontend
+Client (`client/.env` or Vercel env):
 
 ```
-VITE_API_URL=http://localhost:5000/api
+VITE_API_BASE_URL=https://your-backend.example.com
 ```
 
----
+Note: For local development, leave `VITE_API_BASE_URL` empty so the client uses the local proxy or `http://localhost:5000` fallback.
 
-## 🚀 Run Project
+## Running in production (build)
 
-Backend
+Build the frontend:
 
 ```bash
+cd client
+npm run build
+```
+
+Serve the built files from any static host or use Vercel.
+
+Backend production start:
+
+```bash
+cd server
 npm start
 ```
 
-Frontend
+See `DEPLOY.md` (project root) for Vercel + Render-specific deployment instructions and environment variable guidance.
 
-```bash
-npm run dev
-```
+## Deploying (Vercel + Render)
+
+We recommend the following setup:
+
+- Frontend: Deploy `client` to Vercel. Add `VITE_API_BASE_URL` in Vercel project settings to point at your Render service (no `/api` suffix).
+- Backend: Deploy `server` to Render as a Web Service. Set `MONGO_URI`, `JWT_SECRET`, and `FRONTEND_URL` (the Vercel origin) in Render environment variables.
+
+For detailed steps and curl-based checks, see `DEPLOY.md` in the repository root.
+
+## Troubleshooting
+
+- Browser shows CORS error: ensure `FRONTEND_URL` on the backend (Render) exactly matches the Vercel origin (scheme + host). Redeploy the backend after changes.
+- `Failed to fetch` network errors: verify backend URL is reachable and HTTPS is used in production.
+- Login/Register failing with 4xx: inspect request payload (missing fields) and server logs for validation messages.
+- 500 errors: check backend logs on Render for stack traces.
+- Uploaded images not visible after deploy: Render's filesystem is ephemeral — use Cloudinary/S3 for persistent uploads.
+
+## Contributing
+
+Contributions welcome — open issues or PRs for bugs and enhancements. Follow standard GitHub flow:
+
+1. Fork the repo
+2. Create a feature branch
+3. Make changes and test locally
+4. Open a PR with a clear description
+
+## License
+
+This project is provided as-is. Add a license file if you want to change terms (MIT recommended for open source).
 
 ---
 
-## 🌟 Future Improvements
-
-- Dark Mode
-- User Profiles
-- Related Blogs
-- Reading History
-- Rich Text Editor
-- Notifications
-
----
-
-## 👩‍💻 Author
-
-**Sarngi Kumbhani**
-
-GitHub:
-https://github.com/Sarngi1524
-
-LinkedIn:
-(Add your LinkedIn profile)
-
----
-
-⭐ If you like this project, consider giving it a star.
+If you want specific README wording, a short project description for GitHub, or to include screenshots/gifs, tell me and I'll update `README.md` accordingly.
