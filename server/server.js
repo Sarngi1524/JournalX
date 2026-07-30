@@ -2,6 +2,7 @@ const express = require("express");
 const dotenv = require("dotenv");
 const cors = require("cors");
 const connectDB = require("./config/db");
+const mongoose = require("mongoose");
 
 dotenv.config();
 connectDB();
@@ -44,6 +45,18 @@ if (process.env.NODE_ENV === "production") {
 }
 
 app.use(express.json());
+// Lightweight diagnostics endpoint (no secrets returned) to help verify env and DB state
+app.get("/api/debug", (req, res) => {
+  try {
+    res.json({
+      jwtSecretPresent: !!process.env.JWT_SECRET,
+      mongoConnected: mongoose.connection && mongoose.connection.readyState === 1,
+      frontendUrlConfigured: !!process.env.FRONTEND_URL,
+    });
+  } catch (err) {
+    res.status(500).json({ message: "debug endpoint error" });
+  }
+});
 //Routes
 app.use("/api/auth", require("./routes/authRoutes"));
 app.use("/api/posts", require("./routes/postRoutes"));
