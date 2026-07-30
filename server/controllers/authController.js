@@ -39,6 +39,7 @@ const registerUser = async (req, res) => {
       token: generateToken(user._id),
     });
   } catch (error) {
+    console.error('Auth register error:', error);
     res.status(500).json({
       message: error.message,
     });
@@ -81,6 +82,7 @@ const loginUser = async (req, res) => {
     });
 
   } catch (error) {
+    console.error('Auth login error:', error);
     res.status(500).json({
       message: error.message,
     });
